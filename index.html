@@ -14,13 +14,14 @@
 
     /* Open button */
     .open-btn {
-      margin: 50px;
+      margin: 100px;
       padding: 12px 20px;
       border: none;
       border-radius: 8px;
       background: #111827;
       color: white;
       cursor: pointer;
+      font-size: 16px;
     }
 
     /* Modal background */
@@ -36,11 +37,11 @@
     /* Modal box */
     .modal-content {
       width: 90%;
-      max-width: 500px;
+      max-width: 450px;
       background: white;
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     }
 
     .modal-header {
@@ -54,40 +55,31 @@
     }
 
     .close {
+      border: none;
+      background: none;
       font-size: 24px;
       cursor: pointer;
-      color: #666;
     }
 
-    textarea {
+    .ai-input {
       width: 100%;
-      height: 100px;
+      box-sizing: border-box;
       margin-top: 20px;
       padding: 12px;
-      box-sizing: border-box;
       border: 1px solid #ddd;
-      border-radius: 10px;
+      border-radius: 8px;
       resize: none;
-      font-size: 14px;
     }
 
-    .generate-btn {
-      width: 100%;
+    .ask-btn {
       margin-top: 12px;
+      width: 100%;
       padding: 12px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       background: #6366f1;
       color: white;
       cursor: pointer;
-    }
-
-    .response {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f3f4f6;
-      border-radius: 10px;
-      display: none;
     }
   </style>
 </head>
@@ -102,19 +94,21 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h2>✨ AI Assistant</h2>
-        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>✨ Ask AI</h2>
+        <button class="close" onclick="closeModal()">&times;</button>
       </div>
 
-      <textarea id="prompt" placeholder="Ask something..."></textarea>
+      <p>How can I help you?</p>
 
-      <button class="generate-btn" onclick="askAI()">
-        Generate
+      <textarea
+        class="ai-input"
+        rows="4"
+        placeholder="Type your question..."
+      ></textarea>
+
+      <button class="ask-btn">
+        Ask AI
       </button>
-
-      <div class="response" id="response">
-        AI response will appear here...
-      </div>
 
     </div>
   </div>
@@ -126,20 +120,6 @@
 
     function closeModal() {
       document.getElementById("aiModal").style.display = "none";
-    }
-
-    function askAI() {
-      const prompt = document.getElementById("prompt").value;
-      const response = document.getElementById("response");
-
-      if (!prompt.trim()) {
-        response.innerText = "Please enter a question.";
-      } else {
-        response.innerText =
-          "AI response for: " + prompt;
-      }
-
-      response.style.display = "block";
     }
 
     // Close when clicking outside the modal
